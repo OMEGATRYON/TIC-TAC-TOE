@@ -43,8 +43,8 @@ function buildGame() {
     gameBoard.appendChild(buttonRow);
     body.appendChild(gameBoard);
 }
-// declaring combos for wins for the playGame function. Will pull horizontal, vertical, and diagonal winning postions
-let winCombo = [
+// declaring win conditions.
+let winCondition = [
     [0, 1, 2],
     [3, 4, 5],
     [6, 7, 8],
@@ -54,7 +54,7 @@ let winCombo = [
     [0, 4, 8],
     [2, 4, 6]
 ];
-// function starts the game when it hears the event listener for the build game fucntion (model)
+// function starts the game
 function playGame() {
     let turnText = document.getElementById('turn');
     if (this.innerText == '' && gameOver == false) {
@@ -67,13 +67,13 @@ function playGame() {
         }
         state++;
     }
-// uses one of the above values from winCombo to declare a winner
-    for (let i = 0; i < winCombo.length; i++) {
-        let pos1 = document.getElementById(winCombo[i][0]);
-        let pos2 = document.getElementById(winCombo[i][1]);
-        let pos3 = document.getElementById(winCombo[i][2]);
+// uses one of the above values from winCondition to show winner
+    for (let i = 0; i < winCondition.length; i++) {
+        let pos1 = document.getElementById(winCondition[i][0]);
+        let pos2 = document.getElementById(winCondition[i][1]);
+        let pos3 = document.getElementById(winCondition[i][2]);
         console.log(pos1, pos2, pos3, this);
-// listens for one of the games players to hit one of the game winCombos and declare a winner (con)
+// listens for player to hit win cond and end game.
         if (pos1.innerText === pos2.innerText && pos2.innerText === pos3.innerText && pos1.innerText === 'X') {
             turnText.innerHTML = 'Player X wins! congrats!';
             gameOver = true;
